@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 5</title>
+  </head>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+      background: #f3f3f3;
+      flex-direction: column;
+      margin: 0;
+    }
+
+    .main {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      padding: 20px 30px;
+      transition: transform 0.2s;
+      width: 500px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #4caf50;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      text-align: left;
+      color: #555;
+      font-weight: bold;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      background-color: #372af5;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .result-box {
+      background-color: #f7f7f7;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    .result-box h3 {
+      color: #333;
+    }
+
+    .result-box p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+  <body>
+    <div class="main">
+      <h1>Hình Chữ Nhật</h1>
+      <h2 th:if="${error != null}" th:text="${error}" style="color: red"></h2>
+      <form action="/hcn" method="get">
+        <label for="chieudai"> Chiều dài: </label>
+        <input
+          type="number"
+          id="chieudai"
+          name="chieudai"
+          placeholder="Nhập chiều dài hình chữ nhật"
+          th:value="${chieudai}"
+        />
+
+        <label for="chieurong"> Chiều rộng: </label>
+        <input
+          type="number"
+          id="chieurong"
+          name="chieurong"
+          placeholder="Nhập chiều rộng hình chữ nhật"
+          th:value="${chieurong}"
+        />
+
+        <div class="wrap">
+          <button type="submit">Tính Toán</button>
+        </div>
+      </form>
+      <!-- Hiển thị kết quả -->
+      <div
+        class="result-box"
+        th:if="${chieudai != null && chieurong != null && chieudai >= 0 && chieurong >= 0}"
+      >
+        <h3>Kết Quả:</h3>
+        <p>Chu vi hình chữ nhật: <span th:text="${chuvihcn}"></span></p>
+        <p>Diện tích hình chữ nhật: <span th:text="${dientichhcn}"></span></p>
+      </div>
+    </div>
+  </body>
+</html>
